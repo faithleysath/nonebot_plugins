@@ -23,7 +23,7 @@ r'''
 Author       : laysath faithleysath@gmail.com
 Date         : 2023-07-21 09:54:05
 LastEditors  : laysath faithleysath@gmail.com
-LastEditTime : 2023-07-21 10:10:49
+LastEditTime : 2023-07-21 19:12:41
 FilePath     : \qq-bot\src\plugins\win_control\config.py
 Description  : 
 GitHub       : https://github.com/faithleysath
@@ -34,3 +34,5 @@ from pydantic import BaseModel, Extra
 
 class Config(BaseModel, extra=Extra.ignore):
     """Plugin Config Here"""
+    win_control_enabled: bool = True
+    """Whether this plugin should be enabled"""
