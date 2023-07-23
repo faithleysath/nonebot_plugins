@@ -24,18 +24,17 @@ r'''
 Author       : laysath faithleysath@gmail.com
 Date         : 2023-07-21 09:54:05
 LastEditors  : laysath faithleysath@gmail.com
-LastEditTime : 2023-07-21 16:47:57
+LastEditTime : 2023-07-23 17:06:12
 FilePath     : \qq-bot\src\plugins\win_control\__init__.py
 Description  : 
 GitHub       : https://github.com/faithleysath
 '''
-from datetime import timedelta
 
 from nonebot import get_driver
 from nonebot.plugin import PluginMetadata
 from nonebot import on_command
 from nonebot.permission import SUPERUSER
-from nonebot.adapters.onebot.v12 import PrivateMessageEvent, Message
+from nonebot.adapters.onebot.v11 import PrivateMessageEvent, Message
 from nonebot.params import CommandArg
 from nonebot.log import logger
 

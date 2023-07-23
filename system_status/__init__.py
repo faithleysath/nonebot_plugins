@@ -26,7 +26,7 @@ r'''
 Author       : laysath faithleysath@gmail.com
 Date         : 2023-07-20 18:57:08
 LastEditors  : laysath faithleysath@gmail.com
-LastEditTime : 2023-07-21 10:07:17
+LastEditTime : 2023-07-23 17:38:54
 FilePath     : \qq-bot\src\plugins\system_status\__init__.py
 Description  : 
 GitHub       : https://github.com/faithleysath
@@ -38,9 +38,8 @@ from typing import Any, Dict
 
 from jinja2 import Environment
 from nonebot import get_driver
-from nonebot.log import logger
 from nonebot.matcher import Matcher
-from nonebot.adapters.onebot.v12 import PrivateMessageEvent
+from nonebot.adapters.onebot.v11 import PrivateMessageEvent, PokeNotifyEvent
 from nonebot.permission import SUPERUSER
 from nonebot.plugin import PluginMetadata
 from jinja2.meta import find_undeclared_variables
@@ -135,9 +134,13 @@ async def render_template() -> str:
     return message.strip("\n")
 
 
-async def server_status(matcher: Matcher, event: PrivateMessageEvent):
+async def server_status_command(matcher: Matcher, event: PrivateMessageEvent):
     """Server status matcher handler."""
     await matcher.send(message=await render_template())
 
+async def server_status_poke(matcher: Matcher, event: PokeNotifyEvent):
+    """Server status matcher handler."""
+    if event.group_id == None:
+        await matcher.send(message=await render_template())
 
 from . import common

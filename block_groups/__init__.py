@@ -34,7 +34,7 @@ GitHub       : https://github.com/faithleysath
 
 from nonebot import get_driver, logger
 from nonebot.plugin import PluginMetadata
-from nonebot.adapters.onebot.v12 import GroupMessageEvent
+from nonebot.adapters.onebot.v11 import GroupMessageEvent
 from nonebot.message import event_preprocessor
 from nonebot.exception import IgnoredException
 from .config import Config
