@@ -26,7 +26,7 @@ r'''
 Author       : laysath faithleysath@gmail.com
 Date         : 2023-07-20 18:57:08
 LastEditors  : laysath faithleysath@gmail.com
-LastEditTime : 2023-07-21 09:57:44
+LastEditTime : 2023-07-24 11:12:32
 FilePath     : \qq-bot\src\plugins\system_status\data_source.py
 Description  : 
 GitHub       : https://github.com/faithleysath
@@ -43,7 +43,7 @@ import psutil
 from nonebot import get_driver
 from nonebot.log import logger
 from nonebot.adapters import Bot
-import requests
+import httpx
 import numpy as np
 
 if TYPE_CHECKING:
@@ -138,14 +138,14 @@ def get_uptime() -> datetime:
     """Get the uptime of the mechine."""
     return datetime.fromtimestamp(psutil.boot_time(), tz=CURRENT_TIMEZONE)
 
-def get_ipv6() -> str:
-    """Get the ipv6 address of the mechine."""
-    # 访问https://v6r.ipip.net/获取ipv6地址
+async def get_ipv6() -> str:
+    """Get the ipv6 address of the machine."""
+    # Access https://v6r.ipip.net/ to get the ipv6 address
     url = 'https://v6r.ipip.net/'
-    try:
-        r = requests.get(url)
-        r.raise_for_status()
-        r.encoding = r.apparent_encoding
-        return r.text
-    except:
-        return "获取失败"
+    async with httpx.AsyncClient() as client:
+        try:
+            response = await client.get(url)
+            response.raise_for_status()
+            return response.text
+        except:
+            return "获取失败"
